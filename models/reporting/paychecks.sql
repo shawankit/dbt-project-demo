@@ -9,7 +9,7 @@ select
     jsonb_extract_path_text(_airbyte_data, 'email') as email,
     jsonb_extract_path_text(_airbyte_data, 'amount') as amount,
     jsonb_extract_path_text(_airbyte_data, 'created_at') as created_at
-from "target_db"."public"._airbyte_raw_timesheets as _airbyte_raw_timesheets 
+from "target_db"."public"._airbyte_raw_paychecks as _airbyte_raw_paychecks
 inner join "target_db"."public".users as users on 
     users.email = jsonb_extract_path_text(_airbyte_raw_timesheets._airbyte_data, 'email')
 -- timesheets
