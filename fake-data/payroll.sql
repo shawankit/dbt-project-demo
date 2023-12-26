@@ -25,13 +25,11 @@ CREATE TABLE paychecks (
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
-INSERT INTO paychecks (user_id, email, amount) VALUES
-    (1, (SELECT email FROM users WHERE username = 'john_doe'), 1000.00),
-    (1, (SELECT email FROM users WHERE username = 'john_doe'), 1000.00),
-    (1, (SELECT email FROM users WHERE username = 'john_doe'), 1000.00),
-    (2, (SELECT email FROM users WHERE username = 'jane_smith'), 2000.00),
-    (2, (SELECT email FROM users WHERE username = 'jane_smith'), 2000.00),
-    (2, (SELECT email FROM users WHERE username = 'jane_smith'), 2000.00),
-    (3, (SELECT email FROM users WHERE username = 'bob_jones'), 3000.00),
-    (3, (SELECT email FROM users WHERE username = 'bob_jones'), 3000.00),
-    (3, (SELECT email FROM users WHERE username = 'bob_jones'), 3000.00);
+DO $$
+BEGIN
+    FOR user_row IN SELECT user_id, email FROM users
+        LOOP
+           INSERT INTO paychecks (user_id, email, amount, created_at)
+              VALUES (user_row.user_id, user_row.email, random() * 1000 + 1, CURRENT_TIMESTAMP);
+        END LOOP;
+END $$;

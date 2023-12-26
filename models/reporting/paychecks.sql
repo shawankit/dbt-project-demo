@@ -11,7 +11,7 @@ select
     jsonb_extract_path_text(_airbyte_data, 'created_at') as created_at
 from "target_db"."public"._airbyte_raw_paychecks as _airbyte_raw_paychecks
 inner join "target_db"."public".users as users on 
-    users.email = jsonb_extract_path_text(_airbyte_raw_timesheets._airbyte_data, 'email')
+    users.email = jsonb_extract_path_text(_airbyte_raw_paychecks._airbyte_data, 'email')
 -- timesheets
 ),  __dbt__CTE__paychecks_ab2_558 as (
     select 
