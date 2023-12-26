@@ -36,6 +36,6 @@ inner join "target_db"."public".users as users on
 
 select
     *
-from __dbt__CTE__timesheets_ab2_558
+from __dbt__CTE__paychecks_ab2_558
 -- timesheets
 
