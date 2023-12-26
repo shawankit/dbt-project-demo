@@ -1,0 +1,36 @@
+
+version: 2
+
+models:
+  - name: timesheet_test
+    description: "A test table"
+    columns:
+      - name: timesheet_id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+      - name: user_id
+        description: "Foreign key to the users table"
+        tests:
+          - not_null
+      - name: email
+        description: "The user's email address"
+        tests:
+          - not_null
+          - accepted_email
+      - name: hours_worked
+        description: "The number of hours worked"
+        tests:
+          - not_null
+          - accepted_hours
+      - name: date
+        description: "The date of the timesheet"
+        tests:
+          - not_null
+          - accepted_date
+      - name: created_at
+        description: "The date the timesheet was created"
+        tests:
+          - not_null
+          - accepted_date
