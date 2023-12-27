@@ -1,4 +1,8 @@
-{{ config(materialized='table') }}
+{{  config(
+        materialized='incremental',
+        unique_key='timesheet_id',
+    )
+}}
 
 with __dbt__CTE__timesheets_ab1_558 as (
 

@@ -1,4 +1,8 @@
-{{ config(materialized='table') }}
+{{  config(
+        materialized='incremental',
+        unique_key='paycheck_id',
+    )
+}}
 
 with __dbt__CTE__paychecks_ab1_558 as (
 
