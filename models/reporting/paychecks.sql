@@ -1,6 +1,6 @@
 {{  config(
         materialized='incremental',
-        unique_key='paycheck_id',
+        unique_key='paycheck_id'
     )
 }}
 

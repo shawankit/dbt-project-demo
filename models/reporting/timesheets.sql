@@ -1,6 +1,6 @@
 {{  config(
         materialized='incremental',
-        unique_key='timesheet_id',
+        unique_key='timesheet_id'
     )
 }}
 
