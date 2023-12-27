@@ -1,6 +1,7 @@
 {{  config(
         materialized='incremental',
-        unique_key='paycheck_id'
+        unique_key=['paycheck_id', 'email'],
+        incremental_strategy='delete+insert',
     )
 }}
 
@@ -8,14 +9,15 @@ with __dbt__CTE__paychecks_ab1_558 as (
 
 -- SQL model to parse JSON blob stored in a single column and extract into separated field columns as described by the JSON Schema
 select
-    jsonb_extract_path_text(_airbyte_data, 'paycheck_id') as paycheck_id,
+    paychecks_stg.paycheck_id as paycheck_id,
     users.user_id as user_id,
-    jsonb_extract_path_text(_airbyte_data, 'email') as email,
-    jsonb_extract_path_text(_airbyte_data, 'amount') as amount,
-    jsonb_extract_path_text(_airbyte_data, 'created_at') as created_at
-from "target_db"."public"._airbyte_raw_paychecks as _airbyte_raw_paychecks
+    paychecks_stg.email as email,
+    paychecks_stg.amount as amount,
+    paychecks_stg.created_at as created_at,
+    paychecks_stg._airbyte_emitted_at as _airbyte_emitted_at
+from "target_db"."_airbyte_public".paychecks_stg as paychecks_stg
 inner join "target_db"."public".users as users on 
-    users.email = jsonb_extract_path_text(_airbyte_raw_paychecks._airbyte_data, 'email')
+    users.email = paychecks_stg.email
 -- timesheets
 ),  __dbt__CTE__paychecks_ab2_558 as (
     select 

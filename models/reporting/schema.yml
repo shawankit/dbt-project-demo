@@ -2,7 +2,7 @@
 version: 2
 
 models:
-  - name: timesheets
+  - name: timesheets_test
     description: "A test table"
     columns:
       - name: timesheet_id
@@ -35,7 +35,7 @@ models:
           - not_null
           - accepted_date
   
-  - name: paychecks
+  - name: paychecks_test
     description: "A test table"
     columns:
       - name: paycheck_id

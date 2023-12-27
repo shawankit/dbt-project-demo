@@ -9,7 +9,7 @@ with __dbt__CTE__timesheets as (
 	EXTRACT(WEEK FROM date_worked) AS work_week,
 	sum(hours_worked) as hours_worked
 FROM
-    {{ ref('timesheets') }}
+    {{ ref('transformed_timesheets') }}
 GROUP BY 
     user_id,rollup(work_year, work_quarter, work_month, work_week)
 ORDER BY
