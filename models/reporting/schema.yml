@@ -2,7 +2,7 @@
 version: 2
 
 models:
-  - name: transformed_paychecks
+  - name: transformed_timesheets
     description: "A test table"
     columns:
       - name: timesheet_id
