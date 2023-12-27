@@ -1,6 +1,6 @@
 {{  config(
         materialized='incremental',
-        unique_key=['paycheck_id', 'email'],
+        unique_key='paycheck_id',
         incremental_strategy='delete+insert',
     )
 }}

@@ -1,6 +1,6 @@
 {{  config(
         materialized='incremental',
-        unique_key=['timesheet_id', 'email'],
+        unique_key='timesheet_id',
         incremental_strategy='delete+insert',
     )
 }}
